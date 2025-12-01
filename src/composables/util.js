@@ -1,5 +1,7 @@
 import { ElNotification } from 'element-plus'
 import { ElMessageBox } from 'element-plus'
+
+import nprogress from 'nprogress'
 export function toast(message, type = 'success', duration = 3000,dangerouslyUseHTMLString = true) {
     ElNotification({
         message,
@@ -16,3 +18,14 @@ export function msgBox(message, type = 'warning', title = '提示', confirmButto
         type,
     })
 }
+
+//显示全屏loading
+export function showFullLoading(){
+    nprogress.start()
+}
+
+//隐藏全屏loading
+export function hideFullLoading(){
+    nprogress.done()
+}
+//

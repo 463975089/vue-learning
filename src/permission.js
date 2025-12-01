@@ -1,15 +1,19 @@
 import router from '~/router'
 import { getToken } from '~/composables/auth'
-import { toast } from '~/composables/util'
+import { toast, showFullLoading, hideFullLoading } from '~/composables/util'
 import store from '~/store'
 //全局前置守卫
 router.beforeEach(async(to, from, next) => {
+    //显示loading
+    showFullLoading()
     const token = getToken()
-
+    let title = to.meta.title? to.meta.title: ""
+    document.title = title
     if (!token && to.path != "/login"){
         toast('请先登录', 'warning')
         return next({path:'/login'})
     }
+
 
     if (token && to.path == "/login"){
         toast('您已登录，无需重复登录', 'warning')
@@ -38,4 +42,10 @@ router.beforeEach(async(to, from, next) => {
     } else {
         next()
     }
+})
+
+//全局后置钩子
+router.afterEach(() => {
+    //隐藏loading
+    hideFullLoading()
 })

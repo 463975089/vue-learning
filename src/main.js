@@ -9,6 +9,7 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import "nprogress/nprogress.css"
 //使用 createApp 函数创建一个 Vue 应用实例，并将 App 组件作为根组件。
 const app = createApp(App)
 //将 Vuex 插件安装到 Vue 应用中，这样你就可以在整个应用中使用 Vuex 提供的状态管理了。
