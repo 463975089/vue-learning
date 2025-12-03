@@ -11,7 +11,7 @@ const routes = [
         component: Admin,
         children: [
             {
-                path: '/',
+                path: '',
                 component: Index,
                 meta: {
                     title: '首页'
