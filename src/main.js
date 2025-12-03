@@ -10,6 +10,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import "nprogress/nprogress.css"
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 //使用 createApp 函数创建一个 Vue 应用实例，并将 App 组件作为根组件。
 const app = createApp(App)
 //将 Vuex 插件安装到 Vue 应用中，这样你就可以在整个应用中使用 Vuex 提供的状态管理了。
@@ -17,6 +19,10 @@ app.use(store)
 //将 Element Plus 插件安装到 Vue 应用中，这样你就可以在整个应用中使用 Element Plus 提供的组件了。
 app.use(router)
 app.use(ElementPlus)
+//将 Element Plus 图标组件添加到 Vue 应用中，这样你就可以在组件中使用 Element Plus 提供的图标了。
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 import './permission'
 //导入 Windi CSS 的虚拟样式文件，启用 Windi CSS 的实用程序类。  
 import 'virtual:windi.css'
