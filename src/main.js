@@ -7,7 +7,7 @@ import 'element-plus/dist/index.css'
 import './style.css'
 //导入根组件 App.vue，这是整个 Vue 应用的主组件。
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import store from './store'
 import "nprogress/nprogress.css"
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'

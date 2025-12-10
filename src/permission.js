@@ -1,8 +1,9 @@
-import router from '~/router'
+import { router, addRoutes } from '~/router'
 import { getToken } from '~/composables/auth'
 import { toast, showFullLoading, hideFullLoading } from '~/composables/util'
 import store from '~/store'
 //全局前置守卫
+let hasGetInfo = false
 router.beforeEach(async(to, from, next) => {
     //显示loading
     showFullLoading()
@@ -24,10 +25,12 @@ router.beforeEach(async(to, from, next) => {
     if (token) {
         try {
             // ✅ 只在用户信息为空时才获取
-            if (!store.state.user || Object.keys(store.state.user).length === 0) {
-                await store.dispatch('getInfo')
-            }
-            next()
+            let hasNewRoutes = false
+            if (!store.state.user || Object.keys(store.state.user).length == 0) {
+                let res = await store.dispatch('getInfo')
+                hasNewRoutes = addRoutes(res.menus)
+            } 
+            hasNewRoutes ? next({ ...to, replace: true }) : next()
         } catch (error) {
             console.error('获取用户信息失败:', error)
             toast('获取用户信息失败，请重新登录', 'error')

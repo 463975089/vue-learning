@@ -1,7 +1,7 @@
 
 <template>
-  <div class="f-menu">
-    <el-menu default-active="2" class="border-0" @select="handleSelect">
+  <div class="f-menu" :style="{width: $store.state.asideWidth}"  >
+    <el-menu :default-active="defaultActive" :unique-opened="true" class="border-0" @select="handleSelect" :collapse="isCollapse" :collapse-transition="false">
       <template v-for="(item,index) in asideMenu" :key="index">
          <el-sub-menu v-if="item.child && item.child.length > 0 " :index="item.name">
             <template #title>
@@ -31,37 +31,39 @@
 </template>
 <script setup>
 
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 const router = useRouter();
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+const defaultActive = ref(router.currentRoute.value.path);
+const $store = useStore();
+const isCollapse = computed(() => {
+  return $store.state.asideWidth == '64px'
+});
+const asideMenu = computed(() => {
+  return $store.state.menus
+});
 
-const asideMenu = [{
-     "name" : "后台面板",
-     "icon" : "help",
-     "child": [{
-        "name": "主控台",
-        "icon": "home-filled",
-        "frontpath": "/",
-     }]
-},{
-     "name" : "商城管理",
-     "icon" : "shopping-bag",
-     "child": [{
-        "name": "商品管理",
-        "icon": "ShoppingCartFull",
-        "frontpath": "/goods/list",
-     }]
-}]
 const handleSelect = (index) => {
   router.push(index)
 }
 </script>
 <style scoped>
   .f-menu{
-    width: 250px;
+    transition:all 0.3s;
     top: 64px;
     bottom: 0;
     left: 0;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     @apply fixed shadow-md bg-light-50
+  }
+  .f-menu::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  .f-menu::-webkit-scrollbar-thumb {
+    background: transparent;
   }
 </style>
