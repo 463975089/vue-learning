@@ -1,28 +1,25 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="6" v-for="i in 4" :key="i">
+      <el-col :span="6" v-for="i in 4" :key="i" v-if="panels.length === 0">
         <el-skeleton class="bg-light-100" loading animated>
           <template #template>
-            <el-skeleton-item variant="image" style="width: 240px; height: 240px"/>
-            <div style="padding: 14px">
-              <el-skeleton-item variant="p" style="width: 50%"/>
-              <div
-                  style="
-            display: flex;
-            align-items: center;
-            justify-items: space-between;
-          "
-              >
+            <div style="padding:14px;height: 76px" class="flex justify-between">
+                 <el-skeleton-item variant="p" style="width: 30%"/>
+                 <el-skeleton-item variant="p" style="width: 10%"/>
+            </div>
+            <div style="padding: 14px;height:76px" class="flex justify-between">
+             <el-skeleton-item variant="p" style="width: 50%"/>
+            </div>
+              <div style="padding:14px" class="flex items-center justify-between">
                 <el-skeleton-item variant="text" style="margin-right: 16px"/>
                 <el-skeleton-item variant="text" style="width: 30%"/>
               </div>
-            </div>
           </template>
         </el-skeleton>
       </el-col>
-      <el-col :span="6" v-for="(item,index) in panels" :key="index">
-        <el-card shadow="never" class="border-0">
+      <el-col :span="6" v-for="(item,index) in panels" :key="index" v-else>
+        <el-card shadow="hover" class="border-0">
           <template #header>
             <div class="flex justify-between">
               <span class="text-sm">{{ item.title }}</span>
@@ -34,7 +31,9 @@
               </el-tag>
             </div>
           </template>
-          <div class="text-3xl"> {{ item.value }}</div>
+          <div class="text-3xl ">
+            <CountTo :value="item.value"></CountTo>
+          </div>
           <template #footer>
             <div class="flex justify-between text-sm">
               <span> {{ item.subTitle }}</span>
@@ -44,6 +43,9 @@
         </el-card>
       </el-col>
     </el-row>
+  </div>
+  <div>
+    <IndexNavs></IndexNavs>
   </div>
 </template>
 <style scoped>
@@ -59,6 +61,7 @@
   border-radius: 4px;
 }
 
+
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
@@ -67,11 +70,14 @@
 <script setup>
 import {ref} from 'vue'
 import {getStatistics1} from '~/api/index.js'
-
+import CountTo from '~/components/CountTo.vue'
+import IndexNavs from '~/components/IndexNavs.vue'
 const panels = ref([])
 
 getStatistics1().then(res => {
   panels.value = res.panels
   console.log(panels.value)
 })
+
+
 </script>
