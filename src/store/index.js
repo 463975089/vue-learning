@@ -40,7 +40,7 @@ const store = createStore({
                 const res = await getInfo()
                 commit("SET_USERINFO", res)
                 commit("SET_MENUS", res.menus)
-                commit("SET_RULENAME", res.ruleName)
+                commit("SET_RULENAME", res.ruleNames)
                 return res
             } catch (error) {
                 console.error('获取用户信息失败:', error)

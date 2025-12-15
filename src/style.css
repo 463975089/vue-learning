@@ -30,7 +30,8 @@ a:hover {
 }
 
 body {
-  height: 100%;  /* 继承 html 的 100% 高度 */
+  height: auto;  /* 继承 html 的 100% 高度 */
+  min-height: 100%;
   width: 100%;
   margin:0;
   padding:0;

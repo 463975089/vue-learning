@@ -24,6 +24,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 import './permission'
+import permission from './directives/index.js'
+app.directive('permission',permission)
 //导入 Windi CSS 的虚拟样式文件，启用 Windi CSS 的实用程序类。  
 import 'virtual:windi.css'
 app.mount('#app')

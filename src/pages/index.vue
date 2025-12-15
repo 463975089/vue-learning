@@ -45,7 +45,18 @@
     </el-row>
   </div>
   <div>
-    <IndexNavs></IndexNavs>
+    <IndexNavs ></IndexNavs>
+  </div>
+  <div>
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <IndexCount v-permission="['getStatistics3,GET']"></IndexCount>
+      </el-col>
+      <el-col :span="12">
+        <IndexCard title="店铺及商品展示" tip="店铺及商品展示" :goods="goods"></IndexCard>
+        <IndexCard title="订单展示" tip="订单展示" :orders="orders"></IndexCard>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <style scoped>
@@ -69,15 +80,21 @@
 </style>
 <script setup>
 import {ref} from 'vue'
-import {getStatistics1} from '~/api/index.js'
+import {getStatistics1, getStatistics2} from '~/api/index.js'
 import CountTo from '~/components/CountTo.vue'
 import IndexNavs from '~/components/IndexNavs.vue'
-const panels = ref([])
+import IndexCount from '~/components/IndexCount.vue'
+import IndexCard from '~/components/IndexCard.vue'
 
+const panels = ref([])
+const goods = ref([])
+const orders = ref([])
 getStatistics1().then(res => {
   panels.value = res.panels
-  console.log(panels.value)
 })
-
+getStatistics2().then(res => {
+  goods.value = res.goods
+  orders.value = res.order
+})
 
 </script>

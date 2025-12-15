@@ -1,14 +1,14 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header style="z-index: 1000;">
       <FHeader></FHeader>
     </el-header>
     <el-container>
       <el-aside class="el-width" :width="$store.state.asideWidth">
         <FMenu></FMenu>
       </el-aside>
-      <el-main>
-        <FTagList></FTagList>
+      <el-main class="main-container">
+        <FTagList class="tag-list"></FTagList>
         <router-view v-slot="{ Component }">
           <transition name="fade">
             <keep-alive :max="10">
@@ -40,8 +40,18 @@ onDeactivated(() => {
 <style>
 .el-aside {
   transition: all 0.3s;
+  z-index : 10;
+  position: relative;
+}
+.main-container {
+  position: relative;
+  z-index: 1; /* 主内容区层级低于侧边栏 */
 }
 
+.tag-list {
+  position: relative;
+  z-index: 2; /* 标签栏层级高于主内容但低于侧边栏 */
+}
 .fade-enter-from {
   opacity: 0;
   -webkit-transform: translate3d(0, -100%, 0);
@@ -56,7 +66,7 @@ onDeactivated(() => {
   opacity: 1;
 }
 
-.fade-leace-to {
+.fade-leave-to {
   opacity: 0;
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);

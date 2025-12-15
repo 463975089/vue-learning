@@ -9,7 +9,7 @@ const iconNavs = [
   {
     icon:"shopping-cart",
     title:"商品",
-    color:"tet-violet-500",
+    color:"text-violet-500",
     path:"/goods/list"
   },
   {
