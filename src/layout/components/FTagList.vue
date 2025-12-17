@@ -79,6 +79,7 @@ const handleCommand=(cmd)=>{
 </script>
 
 <template>
+<div>
     <div class="f-tag" :style="{ left: $store.state.asideWidth }">
         <el-tabs v-model="activeTab" type="card" class="demo-tabs"  @tab-remove="removeTab" @tab-change="changeTab" style="min-width: 100px;">
             <el-tab-pane v-for="item in tabList" :closable="item.path != '/'" :key="item.path" :label="item.title" :name="item.path">
@@ -101,6 +102,7 @@ const handleCommand=(cmd)=>{
         </span>
     </div>
     <div style="height: 44px;"></div>
+  </div>
 </template>
 
 <style scoped>

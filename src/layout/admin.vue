@@ -1,4 +1,5 @@
 <template>
+
   <el-container>
     <el-header style="z-index: 1000;">
       <FHeader></FHeader>
@@ -10,11 +11,9 @@
       <el-main class="main-container">
         <FTagList class="tag-list"></FTagList>
         <router-view v-slot="{ Component }">
-          <transition name="fade">
             <keep-alive :max="10">
               <component :is="Component"></component>
             </keep-alive>
-          </transition>
         </router-view>
       </el-main>
     </el-container>

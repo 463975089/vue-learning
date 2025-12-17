@@ -14,6 +14,7 @@ const routes = [
             {
                 path: '',
                 component: Index,
+                name: 'index',
                 meta: {
                     title: '首页'
                 }

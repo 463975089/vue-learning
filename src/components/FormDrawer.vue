@@ -1,15 +1,15 @@
 <template>
-    <el-drawer v-model="showDrawer" :title="title" :size="size" :close-on-click-modal=false :destroy-on-close="destroyOnClose" :loading="loading">
-    
+    <el-drawer v-model="showDrawer" :title="title" :size="size" :close-on-click-modal=false :destroy-on-close="destroyOnClose" :loading="loading" :append-to-body="true">
+
       <div class="formDrawer">
           <div class="body">
             <slot> </slot>
           </div>
-          <div class="botton">
+          <div class="button">
                 <el-button type="primary" @click="submit">{{ confirmText }}</el-button>
                 <el-button type="default" @click="close">取 消</el-button>
           </div>
-          
+
       </div>
   </el-drawer>
 </template>
@@ -67,9 +67,10 @@
     height: 100%;
     position:relative;
     display: flex;
+    flex-direction: column;
     
 }
-.formDrawer .botton {
+.formDrawer .button {
     flex: 1;
     @apply absolute bottom-0 left-0 w-full flex justify-start items-center bg-white p-4;
 }

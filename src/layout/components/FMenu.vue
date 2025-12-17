@@ -1,5 +1,6 @@
 
 <template>
+
   <div class="f-menu" :style="{width: $store.state.asideWidth}"  >
     <el-menu :default-active="defaultActive" :unique-opened="true" class="border-0" @select="handleSelect" :collapse="isCollapse" :collapse-transition="false">
       <template v-for="(item,index) in asideMenu" :key="index">

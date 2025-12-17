@@ -78,6 +78,7 @@ const ruleFormRef = ref(null)
 </script>
 
 <template>
+  <div></div>
   <div class="header">
     <span class="logo">
       <el-icon class="mr-1">
