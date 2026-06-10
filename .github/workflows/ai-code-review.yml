@@ -2,7 +2,9 @@ name: PR Keyword Check
 on:
   pull_request:
     types: [opened, synchronize]
-
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   check:
     runs-on: self-hosted
