@@ -1,0 +1,8 @@
+keywords:
+    - type: regex
+      value: "(?i)\\bamd\\b"
+      message: "检测到 AMD 关键字，请确认是否允许使用。"
+
+    - type: regex
+      value: "(?i)\\bcuda\\b"
+      message: "检测到 CUDA 关键字，请确认是否允许使用。"
